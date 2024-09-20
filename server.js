@@ -24,7 +24,7 @@ app.post("/consumer", async ({ body }, res) => {
     await peer.setLocalDescription(answer);
     const payload = {
         sdp: peer.localDescription
-    }
+    };
 
     res.json(payload);
 });
@@ -44,14 +44,15 @@ app.post('/broadcast', async ({ body }, res) => {
     await peer.setLocalDescription(answer);
     const payload = {
         sdp: peer.localDescription
-    }
+    };
 
     res.json(payload);
 });
 
 function handleTrackEvent(e, peer) {
     senderStream = e.streams[0];
-};
+}
 
-
-app.listen(5000, () => console.log('server started'));
+// Use PORT from environment variable or default to 5000 for local development
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
